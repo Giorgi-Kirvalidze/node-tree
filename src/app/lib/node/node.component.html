@@ -1,0 +1,60 @@
+<div *ngIf="dataSource"
+>
+  <div
+    class="root-node"
+    [class.has-children]="!!dataSource.children?.length && !isCollapsed"
+  >
+    <div class="abs-center">
+      <div>{{dataSource.name}}</div>
+      <div>{{dataSource.position}}</div>
+    </div>
+    <div class="pinkBorder"></div>
+    <div
+      class="circle circle-container"
+      (click)="toggleNodeOptionsVisibility()"
+      [ngClass]="isNodeOptionsVisible ? 'tree-icon-minus' : 'tree-icon-plus'"
+    >
+      <ng-container *ngFor="let opt of nodeOptions; let i = index">
+        <div
+          *ngIf="isNodeOptionsVisible"
+          (click)="onSelectNodeOption(dataSource.id, opt.option)"
+          class="circle circle-{{i}}">
+          {{opt.option | slice :0 : 1}}
+        </div>
+      </ng-container>
+    </div>
+    <i
+      *ngIf="dataSource.children &&
+      dataSource.children.length > 0"
+      [ngClass]="{
+      'tree-icon-plus': isCollapsed,
+      'tree-icon-minus': !isCollapsed
+      }"
+      (click)="toggleChildren()"
+      class="ExpandOrCollapse-icon"
+    >
+    </i>
+  </div>
+
+  <div
+    *ngIf="dataSource.children"
+    class="child-nodes"
+    [ngStyle]="ExpandCollapseStyles"
+    [class.borderTop]="dataSource.children.length > 1"
+    [@expandCollapse]="isCollapsed ? 'collapsed' : 'expanded'"
+    (@expandCollapse.start)="toggleAnimStart()"
+    (@expandCollapse.done)="toggleAnimEnd()"
+  >
+    <ng-container
+      *ngFor="let node of dataSource.children; let i = index;"
+    >
+      <node
+        [id]="'dataSource' + '-' + node.id"
+        class="child-node vertical-line"
+        [dataSource]="node"
+        [nodeOptions]="nodeOptions"
+      >
+      </node>
+    </ng-container>
+  </div>
+</div>

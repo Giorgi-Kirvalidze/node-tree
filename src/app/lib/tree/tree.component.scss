@@ -1,0 +1,75 @@
+$blue: #B1BCE6;
+$box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
+.org-chart-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f8;
+  overflow: scroll;
+  height: 100vh;
+}
+
+.addNode {
+  border-radius: 10px;
+  background-color: rgba(208,225,249, 0.5);
+  box-shadow: $box-shadow;
+  cursor: pointer;
+  position: relative;
+  width: 10rem;
+  height: 8rem;
+  margin: 17px auto;
+  text-align: center;
+  background-color: #EFFFFD;
+  transition: all .3s;
+  z-index: 100;
+}
+.tree-icon-plus::before {
+  content: "\002B";
+}
+.blueBorder {
+  bottom: 0;
+  height: 10px;
+  background-color: #FF8AAE;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+$bg: #fff;
+$text: #382b22;
+$light-pink: #fff0f0;
+$pink: #ffe9e9;
+$dark-pink: #f9c4d2;
+$pink-border: #b18597;
+$pink-shadow: #ffe3e2;
+
+* {
+  box-sizing: border-box;
+  &::before, &::after {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+  background: $bg;
+}
+
+.circle-container {
+  width: 20px;
+  height: 20px;
+  background-color: $blue;
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s;
+  border-radius: 50%;
+}
